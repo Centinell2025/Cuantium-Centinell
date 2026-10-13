@@ -1,0 +1,8 @@
+governance_event_id,observed_utc,change_ticket,hostname,control_state,decision_source,related_build
+GOV-201,2026-10-10T01:18:00Z,CHG-420,nb-gw-07,approved,change-board,CFG-10
+GOV-202,2026-10-10T02:29:00Z,CHG-418,nb-bkp-01,approved,change-board,CFG-21
+GOV-207,2026-10-10T03:00:10Z,CHG-419,nb-gw-07,awaiting_review,workflow-engine,CFG-11
+GOV-208,2026-10-10T03:02:00Z,CHG-419,nb-gw-07,security_rejected,security-review,CFG-11
+GOV-209,2026-10-10T03:12:30Z,CHG-419,nb-gw-07,artifact_quarantined,build-security,CFG-11
+GOV-210,2026-10-10T03:28:22Z,CHG-422,nb-gw-07,approved,change-board,CFG-12
+GOV-211,2026-10-10T03:30:02Z,CHG-422,nb-gw-07,rollback_execution_authorized,change-board,CFG-12

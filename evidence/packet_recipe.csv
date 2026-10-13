@@ -1,0 +1,3 @@
+connection_id,source_ip,source_port,destination_ip,destination_port,payload_ascii,label
+CONN-601,198.51.100.31,51142,192.0.2.70,443,QC001_SAMPLE_NON_SECRET_PING,post_reload_gateway
+CONN-602,198.51.100.33,51145,192.0.2.70,443,QC001_DECOY_STATUS,competing_same_gateway

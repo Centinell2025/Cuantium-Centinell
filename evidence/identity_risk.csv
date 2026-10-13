@@ -1,0 +1,6 @@
+risk_event_id,observed_utc,session_id,principal,risk_class,disposition,source_scope
+ALERT-201,2026-10-10T02:50:01Z,SID-21,svc-pki-build,normal_rotation,observed,idp
+ALERT-209,2026-10-10T03:11:05Z,SID-88,svc-netdeploy,off_window_service_token,needs_investigation,idp
+ALERT-210,2026-10-10T03:11:13Z,SID-89,svc-netdeploy,denied_token,blocked,idp
+ALERT-211,2026-10-10T03:17:03Z,SID-90,engineer.alex,denied_interactive,blocked,idp
+ALERT-212,2026-10-10T03:29:20Z,SID-91,svc-netdeploy,scheduled_maintenance,reviewed,idp

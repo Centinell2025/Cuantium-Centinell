@@ -1,0 +1,8 @@
+decision_id,observed_utc,hostname,connection_id,source_ip,source_port,destination_ip,destination_port,protocol,action,source_scope
+FW-201,2026-10-10T03:14:30Z,nb-gw-07,CONN-600,198.51.100.41,51140,192.0.2.70,443,tcp,allow,edge-fw
+FW-203,2026-10-10T03:19:30Z,nb-gw-07,CONN-601,198.51.100.31,51142,192.0.2.70,443,tcp,allow,edge-fw
+FW-204,2026-10-10T03:23:30Z,nb-gw-07,CONN-602,198.51.100.33,51145,192.0.2.70,443,tcp,allow,edge-fw
+FW-205,2026-10-10T03:24:30Z,nb-bkp-01,CONN-603,198.51.100.62,51210,192.0.2.71,443,tcp,allow,edge-fw
+FW-206,2026-10-10T03:20:30Z,nb-api-02,CONN-604,198.51.100.61,51220,192.0.2.72,443,tcp,allow,edge-fw
+FW-208,2026-10-10T03:19:35Z,nb-gw-07,CONN-609,198.51.100.31,51142,192.0.2.70,8443,tcp,deny,edge-fw
+FW-209,2026-10-10T03:19:36Z,nb-gw-07,CONN-610,198.51.100.31,51142,192.0.2.70,443,udp,deny,edge-fw

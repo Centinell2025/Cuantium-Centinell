@@ -1,0 +1,5 @@
+gap_id,source,hostname,from_utc,to_utc,forwarder_status,local_source_retained,interpretation
+GAP-041,central-forwarder,nb-gw-07,2026-10-10T03:00:00Z,2026-10-10T03:01:00Z,delayed,yes,transmission_delay
+GAP-042,central-forwarder,nb-gw-07,2026-10-10T03:14:30Z,2026-10-10T03:15:45Z,partial_export,yes,incomplete_central_copy
+GAP-043,central-forwarder,nb-api-02,2026-10-10T03:15:00Z,2026-10-10T03:16:00Z,delayed,yes,unrelated_host
+GAP-044,edge-sensor,nb-gw-07,2026-10-10T03:22:00Z,2026-10-10T03:23:00Z,partial_export,no,network_sensor_gap

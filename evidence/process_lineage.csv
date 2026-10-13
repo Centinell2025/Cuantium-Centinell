@@ -1,0 +1,6 @@
+process_event_id,hostname,pid,ppid,process_name,session_id,related_audit_id,observed_utc
+PROC-010,nb-gw-07,1807,1121,deploy-agent,SID-88,AUD-100,2026-10-10T03:13:00Z
+PROC-011,nb-gw-07,3880,1807,policy-writer,SID-88,AUD-101,2026-10-10T03:15:10Z
+PROC-012,nb-gw-07,4120,3880,service-manager,SID-88,AUD-102,2026-10-10T03:16:30Z
+PROC-013,nb-api-02,3880,902,backup-tester,SID-21,AUD-103,2026-10-10T03:24:00Z
+PROC-014,nb-gw-07,3901,1808,drift-check,SID-91,NONE,2026-10-10T03:29:13Z

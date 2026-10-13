@@ -1,0 +1,60 @@
+name: QC-001 Validate and Publish Student ZIP
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile verifier and test scripts
+        run: python3 -m compileall -q tools tests
+      - name: Verify independent synthetic evidence consistency
+        run: python3 tools/verify_case.py
+      - name: Run full regression tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Build clean student archive with SHA-256 manifest
+        run: python3 tools/build_student.py
+      - name: Protect exact student bytes with HTB-required archive password
+        shell: bash
+        run: |
+          mkdir -p dist/unpacked
+          unzip -q dist/Cuantium-Centinell-QC001-STUDENT.zip -d dist/unpacked
+          (cd dist/unpacked && zip -q -X -r -P hackthebox ../Cuantium-Centinell-QC001-HTB-STUDENT.zip .)
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, zipfile
+          source=Path('dist/Cuantium-Centinell-QC001-STUDENT.zip')
+          encrypted=Path('dist/Cuantium-Centinell-QC001-HTB-STUDENT.zip')
+          with zipfile.ZipFile(source) as raw, zipfile.ZipFile(encrypted) as packaged:
+              expected={n:raw.read(n) for n in raw.namelist() if not n.endswith('/')}
+              got={n:packaged.read(n,pwd=b'hackthebox') for n in packaged.namelist() if not n.endswith('/')}
+              assert set(expected)==set(got), f'Member list mismatch: {set(expected)^set(got)}'
+              assert all(hashlib.sha256(expected[n]).digest()==hashlib.sha256(got[n]).digest() for n in expected)
+              assert all((e.flag_bits&1) for e in packaged.infolist() if not e.is_dir())
+              assert 'SHA256SUMS.txt' in got
+              assert 'questions/INVESTIGATION.md' in got
+          print('PASS: every student ZIP byte preserved and archive password verified')
+          PY
+      - name: Publish downloadable, password-protected student release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          TAG=qc001-trust-downgrade-student-v1
+          FILE=dist/Cuantium-Centinell-QC001-HTB-STUDENT.zip
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$FILE" --clobber
+          else
+            gh release create "$TAG" "$FILE" \
+              --title "QC-001 — The Trust Downgrade (student package)" \
+              --notes "Beacon of the Eagle LLC / Centinell Suite Defense. Fully synthetic training evidence. ZIP password hackthebox. No private instructor answers, no genuine PQC handshakes or HTB approval claimed." \
+              --latest=false
+          fi
+          gh release view "$TAG" --json url,assets

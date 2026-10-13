@@ -11,6 +11,12 @@ Cuantium Centinell is an original cybersecurity research and training project fr
 
 > **Project status:** runnable educational prototype and Sherlock candidate. Not a production encryption product, not cryptographically certified, not an HTB-approved Sherlock, and not independently rated Hard.
 
+## Recommended HTB Sherlock submission: **QC-001 LITE**
+
+**For a single paid Sherlock, submit the [lightweight edition](sherlock-lite/README.md), not the full Cuantium research package.** It contains 16 forensic questions, 12 bounded synthetic evidence files, a SHA-256 inventory and no extensive enterprise R&D. [Download the dedicated lightweight student release](https://github.com/Centinell2025/Cuantium-Centinell/releases/tag/qc001-trust-downgrade-lite-v1) (ZIP password: `hackthebox`).
+
+The original 34-question expansion is retained for internal R&D and reference. It was already published publicly, so the lightweight split **does not retroactively make it confidential**.
+
 ## What the lab investigates
 
 During a fictional enterprise rollout of a proposed hybrid key-exchange policy, a critical edge gateway switches from an expected hybrid configuration to a classical-only fallback. A rejected change ticket, a service-principal session, unsigned build metadata, a local write, conflicting timestamps, and partial TLS sensor observations must be correlated to determine what happened **and what cannot be proven**.

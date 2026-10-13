@@ -1,7 +1,5 @@
 name: QC-001 Validate and Publish Student ZIP
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 permissions:
   contents: write

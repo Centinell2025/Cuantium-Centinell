@@ -1,0 +1,59 @@
+name: Publish QC-001 Lean Sherlock Student ZIP
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'sherlock-lite/**'
+      - '.github/workflows/publish-sherlock-lite.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  lite-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate scoped case and run negative-control tests
+        run: |
+          python3 sherlock-lite/tools/build_lite.py
+          python3 -m unittest discover -s sherlock-lite/tests -v
+      - name: Create password-protected minimal HTB ZIP
+        shell: bash
+        run: |
+          mkdir -p sherlock-lite/dist/extracted
+          unzip -q sherlock-lite/dist/QC001-The-Trust-Downgrade-LITE-STUDENT.zip -d sherlock-lite/dist/extracted
+          (cd sherlock-lite/dist/extracted && zip -q -X -r -P hackthebox ../QC001-The-Trust-Downgrade-LITE-HTB.zip QC001-The-Trust-Downgrade)
+          python3 - <<'PY'
+          import hashlib
+          import zipfile
+          raw = 'sherlock-lite/dist/QC001-The-Trust-Downgrade-LITE-STUDENT.zip'
+          pwzip = 'sherlock-lite/dist/QC001-The-Trust-Downgrade-LITE-HTB.zip'
+          with zipfile.ZipFile(raw) as a, zipfile.ZipFile(pwzip) as b:
+              left = {n: a.read(n) for n in a.namelist() if not n.endswith('/')}
+              right = {n: b.read(n, pwd=b'hackthebox') for n in b.namelist() if not n.endswith('/')}
+              assert set(left) == set(right), 'ZIP file inventory mismatch'
+              assert len(left) == 17, f'Expected 17 student-only files, got {len(left)}'
+              assert all(hashlib.sha256(left[n]).digest() == hashlib.sha256(right[n]).digest() for n in left)
+              assert all(x.flag_bits & 1 for x in b.infolist() if not x.is_dir())
+              assert all(not any(s in n.lower() for s in ('instructor','writeup','.sqlite','.pcap','enterprise')) for n in right)
+          print('PASS: archive encrypted with hackthebox, files exactly match, 17 student files, no enterprise materials')
+          PY
+      - name: Publish unique QC-001 LITE release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG=qc001-trust-downgrade-lite-v1
+          FILE=sherlock-lite/dist/QC001-The-Trust-Downgrade-LITE-HTB.zip
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$FILE" --clobber
+          else
+            gh release create "$TAG" "$FILE" \
+              --title "QC-001 LITE — The Trust Downgrade" \
+              --notes "Compact student-only synthetic DFIR case by Beacon of the Eagle LLC / Centinell Suite Defense. 16 exact-answer prompts and 12 evidence files. Password: hackthebox. No enterprise modules or confidential solutions. Independent blind-solve difficulty review pending." \
+              --latest=false
+          fi
+          gh release view "$TAG" --json url,assets

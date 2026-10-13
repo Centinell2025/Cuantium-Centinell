@@ -7,6 +7,7 @@ import io
 import zipfile
 from pathlib import Path
 from verify_case import ROOT, EVIDENCE, CSV_FILES, validate
+from verify_advanced import validate as validate_advanced
 
 DOCS = (
     "README.txt",
@@ -14,8 +15,13 @@ DOCS = (
     "docs/EVIDENCE_LIMITS.md",
     "docs/ARCHITECTURE.md",
     "questions/INVESTIGATION.md",
+    "docs/CORRELATION_MATRIX.md",
+    "docs/PCAP_SQL_GUIDE.md",
+    "docs/ANALYST_REPORT_TEMPLATE.md",
+    "docs/EXPERT_BOARD.md",
 )
-EVIDENCE_FILES = sorted(path.name for path in EVIDENCE.iterdir() if path.is_file())
+def evidence_files():
+    return sorted(path.name for path in EVIDENCE.iterdir() if path.is_file())
 DIST = ROOT / "dist"
 NAME = "Cuantium-Centinell-QC001-STUDENT.zip"
 
@@ -26,10 +32,10 @@ def manifest(entries: dict[str, bytes]) -> bytes:
     ).encode("utf-8")
 
 def build() -> Path:
-    validate()
+    validate_advanced()  # regenerates and validates binary evidence
     DIST.mkdir(exist_ok=True)
     members = {name: (ROOT / name).read_bytes() for name in DOCS}
-    members.update({f"evidence/{name}": (EVIDENCE / name).read_bytes() for name in EVIDENCE_FILES})
+    members.update({f"evidence/{name}": (EVIDENCE / name).read_bytes() for name in evidence_files()})
     members["SHA256SUMS.txt"] = manifest(members)
     target = DIST / NAME
     with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED) as archive:
@@ -43,7 +49,7 @@ def build() -> Path:
 def verify_student(target: Path) -> None:
     with zipfile.ZipFile(target, "r") as archive:
         names = archive.namelist()
-        expected = set(DOCS) | {f"evidence/{n}" for n in EVIDENCE_FILES} | {"SHA256SUMS.txt"}
+        expected = set(DOCS) | {f"evidence/{n}" for n in evidence_files()} | {"SHA256SUMS.txt"}
         if len(names) != len(set(names)) or set(names) != expected:
             raise ValueError("Student ZIP membership mismatch")
         if archive.testzip() is not None:

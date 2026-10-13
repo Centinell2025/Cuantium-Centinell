@@ -17,6 +17,8 @@ jobs:
         run: python3 -m compileall -q tools tests
       - name: Verify independent synthetic evidence consistency
         run: python3 tools/verify_case.py
+      - name: Build and verify binary forensic artifacts
+        run: python3 tools/verify_advanced.py
       - name: Run full regression tests
         run: python3 -m unittest discover -s tests -v
       - name: Build clean student archive with SHA-256 manifest
@@ -47,14 +49,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          TAG=qc001-trust-downgrade-student-v1
+          TAG=qc001-trust-downgrade-student-v2
           FILE=dist/Cuantium-Centinell-QC001-HTB-STUDENT.zip
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "$FILE" --clobber
           else
             gh release create "$TAG" "$FILE" \
-              --title "QC-001 — The Trust Downgrade (student package)" \
-              --notes "Beacon of the Eagle LLC / Centinell Suite Defense. Fully synthetic training evidence. ZIP password hackthebox. No private instructor answers, no genuine PQC handshakes or HTB approval claimed." \
+              --title "QC-001 v2 — The Trust Downgrade (34-question student package)" \
+              --notes "Beacon of the Eagle LLC / Centinell Suite Defense. Fully synthetic training evidence, real parseable synthetic PCAP and derived SQLite. 34 DFIR questions + 12 expert exercises. ZIP password hackthebox. No private instructor answers, no genuine PQC handshakes or HTB approval claimed." \
               --latest=false
           fi
           gh release view "$TAG" --json url,assets

@@ -12,6 +12,10 @@ Your task is to distinguish:
 - source clock time from corrected UTC;
 - potential policy exposure from actual evidence of exploitation or data theft.
 
+## Expanded version 2 laboratory
+
+The student ZIP adds process-lineage joins, simulated governance and identity-audit streams, firewall protocol and port decoys, a central forwarding gap, and a multi-step rollback. It also includes **parseable synthetic PCAP bytes** and a SQLite cache **derived from the CSV sources**. There are 34 exact-answer tasks plus 12 non-graded expert exercises. These additions do not transform the fictional dataset into a native acquisition or independently authenticate any ML-KEM handshake.
+
 ## Practical workflow
 1. Preserve the original files; check the package SHA-256 manifest.
 2. Trace each asset and its required crypto policy.

@@ -4,3 +4,5 @@ dist/
 .venv/
 .env
 .DS_Store
+evidence/synthetic_gateway_traffic.pcap
+evidence/derived_forensic_index.sqlite3

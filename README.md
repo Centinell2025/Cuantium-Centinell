@@ -18,19 +18,25 @@ During a fictional enterprise rollout of a proposed hybrid key-exchange policy, 
 ### Start here
 
 1. Read [student case briefing](docs/CASE_BRIEF.md) and [evidence limitations](docs/EVIDENCE_LIMITS.md).
-2. Examine [22 exact-answer investigation questions](questions/INVESTIGATION.md).
-3. Generate the student package and verify the synthetic dataset: `python3 tools/verify_case.py && python3 tools/build_student.py`.
+2. Examine [34 exact-answer investigation questions](questions/INVESTIGATION.md).
+3. Generate the student package and verify the synthetic dataset: `python3 tools/verify_advanced.py && python3 tools/build_student.py`.
 4. Run local checks: `python3 -m unittest discover -s tests -v`.
 5. Follow [reviewer handoff](docs/REVIEWER_HANDOFF.md) for packaging, ethics, and open quality gates.
+
+## Version 2 forensic depth
+
+The expanded investigation correlates **process ancestry, rejected change-control events, risk-scored service tokens, TCP/UDP firewall decoys, partial central forwarding and multi-step rollback**. The learner must inspect a byte-level synthetic PCAP and query a provenance-disclosed SQLite index. All acquisition and cryptographic claims remain strictly simulated. See [correlation matrix](docs/CORRELATION_MATRIX.md), [PCAP/SQLite guide](docs/PCAP_SQL_GUIDE.md), [quality gates](docs/QUALITY_GATES_V2.md), and [expert review board](docs/EXPERT_BOARD.md).
+
+**Quality status:** Author-side packet, integrity and negative-control tests are required. Native independently acquired artifacts, a confidential 34-answer instructor write-up and independent blind solves remain outstanding.
 
 ## Repository structure
 
 | Folder | Description |
 | --- | --- |
-| `evidence/` | Original, **synthetic** CSV observations and exact policy-specimen bytes |
+| `evidence/` | Original synthetic CSV observations, policy bytes, generated **synthetic PCAP and derived SQLite** |
 | `questions/` | Student-only, exact-answer DFIR challenges |
-| `tools/` | Cross-source verifier and packaging tooling |
-| `tests/` | Automated sanity, scope and tamper checks |
+| `tools/` | Binary generator, cross-source verifiers and packaging tools |
+| `tests/` | Automated cross-source, packet checksum and tamper negative-control tests |
 | `docs/` | Scenario, architecture, provenance, submission readiness |
 | `.github/workflows/` | CI validation and HTB-style password-protected ZIP release |
 
@@ -40,6 +46,7 @@ Requires **Python 3.10+**, standard library only. No virtual machine, live targe
 
 ```bash
 python3 tools/verify_case.py
+python3 tools/verify_advanced.py
 python3 -m unittest discover -s tests -v
 python3 tools/build_student.py
 ```

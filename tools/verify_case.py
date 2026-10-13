@@ -21,6 +21,13 @@ CSV_FILES = (
     "clock_calibration.csv",
     "tls_observations.csv",
     "edge_flows.csv",
+    "process_lineage.csv",
+    "governance_audit.csv",
+    "identity_risk.csv",
+    "firewall_decisions.csv",
+    "collector_health.csv",
+    "rollback_validation.csv",
+    "packet_recipe.csv",
 )
 
 def rows(filename: str) -> list[dict[str, str]]:
@@ -149,8 +156,8 @@ def validate() -> dict[str, int]:
 
     investigation = (ROOT / "questions" / "INVESTIGATION.md").read_text(encoding="utf-8")
     numbers = [int(m.group(1)) for m in re.finditer(r"(?m)^(\d{2})\.", investigation)]
-    if numbers != list(range(1, 23)):
-        raise ValueError("Expected 22 sequential investigation prompts")
+    if numbers != list(range(1, 35)):
+        raise ValueError("Expected 34 sequential investigation prompts")
     required_limits = ("synthetic", "none is implemented", "not evidence")
     limits = (ROOT / "docs" / "EVIDENCE_LIMITS.md").read_text(encoding="utf-8")
     if not all(term.lower() in limits.lower() for term in required_limits):

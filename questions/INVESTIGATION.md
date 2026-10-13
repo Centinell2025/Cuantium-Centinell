@@ -1,4 +1,4 @@
-# QC-001 — The Trust Downgrade: 22 exact-response tasks
+# QC-001 v2 — The Trust Downgrade: 34 exact-response tasks
 
 Read `README.txt` and `docs/CASE_BRIEF.md` first. For every result, retain an artifact name, record ID and explanation in your notebook. Do not assume a recorded group name proves a real TLS or ML-KEM handshake.
 
@@ -32,6 +32,30 @@ Read `README.txt` and `docs/CASE_BRIEF.md` first. For every result, retain an ar
 20. What **egress byte count** is recorded for the matched flow? **Format:** decimal integer; do not infer data theft.
 21. Which **identity principal** is linked to the local write through the authenticated session? **Format:** exact principal.
 22. Based on this dataset, is a real hardware-backed or externally validated **post-quantum cryptographic handshake** established? **Format:** `ESTABLISHED` or `NOT ESTABLISHED`.
+
+
+## Stage 4 — Deep DFIR: process, governance and token lineage
+
+23. Join the gateway audit file-write event to the system process lineage using the exact host, audit ID and service session; ignore the similarly numbered process on another host. What decimal **PID actually wrote the file**? **Format:** decimal PID.
+24. Walk one edge backward from that exact writer PID, ensuring the parent belongs to the same host/session. What is the immediate **parent PID**? **Format:** decimal PID.
+25. Which unique governance event records the **security rejection of the classical-only change** before the unsigned CI job executed? Exclude the earlier pending event and later quarantine event. **Format:** GOV-NNN.
+26. Correlate the authenticated writer session with the separate identity-risk stream. Which event marks the **off-window service token**? Do not interpret this as proof of the operator's human identity. **Format:** ALERT-NNN.
+
+## Stage 5 — Firewall truth and central telemetry gaps
+
+27. Starting with the corrected classical-only TLS observation, join connection ID, source address, destination address, destination port and **TCP** protocol. Which firewall event records an **allow** for that exact connection? **Format:** FW-NNN.
+28. The same client IP/port generated a blocked **TCP connection to destination port 8443**. Which firewall decision ID is the *denied lookalike*? Ignore the UDP/443 distractor. **Format:** FW-NNN.
+29. What is the central-forwarding **gap ID** whose interval overlaps the gateway's local audited file write? Explain in your work notes why partial central forwarding is not proof the local record was deleted. **Format:** GAP-NNN.
+
+## Stage 6 — Recovery, hash validation and packet bytes
+
+30. Which **approved change ticket** governed restoration of the hybrid gateway policy, rather than the rejected downgrade or unrelated backup task? **Format:** CHG-NNN.
+31. The first restoration attempt still had the changed-policy hash. Which **rollback event** is the earliest one with locally verified policy bytes matching the baseline? **Format:** RB-NNN.
+32. At which exact **UTC timestamp** was that first successful local hash verification recorded? **Format:** YYYY-MM-DDTHH:MM:SSZ.
+33. Parse the provided synthetic **PCAP binary**. For the connection that matches the first normalized classical-only gateway observation, count only **client-to-server TCP application-payload bytes**, excluding Ethernet, IPv4, TCP headers, ACK-only frames and server replies. What is the captured byte total? **Format:** decimal bytes.
+34. For the same connection, subtract the PCAP's observed client payload bytes from the edge flow's **reported egress byte count**. What is the resulting **measurement gap**? This is **not** a proven exfiltration amount. **Format:** decimal bytes.
+
+Read docs/PCAP_SQL_GUIDE.md for offline packet/SQL techniques. For deeper professional assessment, complete the 12 ungraded expert tasks in docs/EXPERT_BOARD.md. Those do not add graded flags.
 
 ## Unscored professional finding
 

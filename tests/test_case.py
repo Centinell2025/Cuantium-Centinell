@@ -16,7 +16,7 @@ import build_student
 class SyntheticCaseTests(unittest.TestCase):
     def test_case_invariants(self):
         summary = verify_case.validate()
-        self.assertEqual(summary["graded_tasks"], 22)
+        self.assertEqual(summary["graded_tasks"], 34)
         self.assertGreater(summary["records"], 25)
 
     def test_crypto_specimen_sha256_is_real(self):

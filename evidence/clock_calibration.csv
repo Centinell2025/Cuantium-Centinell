@@ -1,0 +1,4 @@
+sensor,offset_seconds,model,calibration_scope
+edge-sensor,+90,recorded_utc_equals_actual_utc_plus_offset,edge_tls_telemetry_only
+host-audit,0,recorded_utc_equals_actual_utc_plus_offset,host_audit_only
+fim-agent,0,recorded_utc_equals_actual_utc_plus_offset,fim_events_only

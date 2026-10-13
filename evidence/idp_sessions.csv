@@ -1,0 +1,6 @@
+idp_event_id,observed_utc,principal,session_id,source_host,source_ip,result,auth_method
+IDP-101,2026-10-10T02:50:00Z,svc-pki-build,SID-21,nb-build-01,192.0.2.10,success,service_token
+IDP-102,2026-10-10T03:11:01Z,svc-netdeploy,SID-88,nb-bastion-02,192.0.2.20,success,service_token
+IDP-103,2026-10-10T03:11:11Z,svc-netdeploy,SID-89,nb-bastion-04,192.0.2.22,denied,service_token
+IDP-104,2026-10-10T03:17:00Z,engineer.alex,SID-90,nb-bastion-02,192.0.2.20,denied,interactive
+IDP-105,2026-10-10T03:29:12Z,svc-netdeploy,SID-91,nb-bastion-02,192.0.2.20,success,service_token

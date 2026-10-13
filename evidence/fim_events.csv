@@ -1,0 +1,5 @@
+fim_id,observed_utc,hostname,file_path,event_type,sha256,claimed_build
+FIM-100,2026-10-10T02:56:00Z,nb-gw-07,/etc/qc/tls-policy.conf,baseline,4419d32b472507aad89b0505fd0cd17d01c6948a0c11bb62717e3585067d6fdd,CFG-10
+FIM-101,2026-10-10T03:15:18Z,nb-gw-07,/etc/qc/tls-policy.conf,modified,e879f466e4a357d9e6afa6ba31e07218267e42b85969e06621228c354c3fb35a,CFG-11
+FIM-102,2026-10-10T03:21:12Z,nb-api-02,/etc/qc/other.conf,modified,4419d32b472507aad89b0505fd0cd17d01c6948a0c11bb62717e3585067d6fdd,CFG-31
+FIM-103,2026-10-10T03:22:40Z,nb-gw-07,/etc/qc/tls-policy.conf,unchanged_recheck,e879f466e4a357d9e6afa6ba31e07218267e42b85969e06621228c354c3fb35a,CFG-11

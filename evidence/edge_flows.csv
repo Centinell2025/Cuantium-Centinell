@@ -1,0 +1,6 @@
+flow_id,observed_utc,hostname,connection_id,source_ip,destination_ip,destination_port,reported_egress_bytes,flow_scope
+FLOW-600,2026-10-10T03:14:30Z,nb-gw-07,CONN-600,198.51.100.41,192.0.2.70,443,1284,synthetic_summary
+FLOW-601,2026-10-10T03:19:30Z,nb-gw-07,CONN-601,198.51.100.31,192.0.2.70,443,5832,synthetic_summary
+FLOW-602,2026-10-10T03:23:30Z,nb-gw-07,CONN-602,198.51.100.33,192.0.2.70,443,2120,synthetic_summary
+FLOW-603,2026-10-10T03:24:30Z,nb-bkp-01,CONN-603,198.51.100.62,192.0.2.71,443,4024,synthetic_summary
+FLOW-604,2026-10-10T03:20:30Z,nb-api-02,CONN-604,198.51.100.61,192.0.2.72,443,2024,synthetic_summary

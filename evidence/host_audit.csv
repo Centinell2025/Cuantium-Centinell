@@ -1,0 +1,5 @@
+audit_id,observed_utc,hostname,principal,session_id,action,target,build_artifact_id,policy_sha256
+AUD-100,2026-10-10T03:13:00Z,nb-gw-07,svc-netdeploy,SID-88,stage,/etc/qc/tls-policy.conf,CFG-11,e879f466e4a357d9e6afa6ba31e07218267e42b85969e06621228c354c3fb35a
+AUD-101,2026-10-10T03:15:10Z,nb-gw-07,svc-netdeploy,SID-88,write,/etc/qc/tls-policy.conf,CFG-11,e879f466e4a357d9e6afa6ba31e07218267e42b85969e06621228c354c3fb35a
+AUD-102,2026-10-10T03:16:30Z,nb-gw-07,svc-netdeploy,SID-88,service_reload,edge-tls.service,CFG-11,e879f466e4a357d9e6afa6ba31e07218267e42b85969e06621228c354c3fb35a
+AUD-103,2026-10-10T03:24:00Z,nb-api-02,svc-pki-build,SID-21,read,/etc/qc/tls-policy.conf,CFG-31,4419d32b472507aad89b0505fd0cd17d01c6948a0c11bb62717e3585067d6fdd

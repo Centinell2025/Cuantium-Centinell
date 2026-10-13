@@ -1,0 +1,4 @@
+baseline_id,hostname,policy_mode,required_group,specimen_file,effective_utc,exception_rule
+BASE-01,nb-gw-07,hybrid_required,X25519MLKEM768,policy-hybrid.txt,2026-10-10T00:00:00Z,approved_ticket_only
+BASE-02,nb-api-02,monitor_only,X25519,policy-classic.txt,2026-10-10T00:00:00Z,not_in_PQC_W1
+BASE-03,nb-bkp-01,hybrid_required,X25519MLKEM768,policy-hybrid.txt,2026-10-10T00:00:00Z,approved_ticket_only

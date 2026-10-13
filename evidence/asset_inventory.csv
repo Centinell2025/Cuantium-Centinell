@@ -1,0 +1,6 @@
+asset_id,hostname,role,owner,criticality,migration_wave
+AS-01,nb-gw-07,edge-tls-gateway,network-security,critical,PQC-W1
+AS-02,nb-api-02,application-api,platform,high,PQC-W2
+AS-03,nb-idp-01,identity-provider,identity,critical,PQC-W1
+AS-04,nb-bkp-01,backup-vault,continuity,high,PQC-W2
+AS-05,nb-proxy-03,proxy-edge,network-security,medium,PQC-W3

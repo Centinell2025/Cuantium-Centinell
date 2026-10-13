@@ -1,0 +1,5 @@
+job_id,observed_utc,hostname,build_artifact_id,change_ticket,signing_status,delivery_status,policy_group
+JOB-710,2026-10-10T01:31:00Z,nb-gw-07,CFG-10,CHG-420,signed,applied,X25519MLKEM768
+JOB-711,2026-10-10T03:12:00Z,nb-gw-07,CFG-11,CHG-419,unsigned,applied,X25519
+JOB-712,2026-10-10T03:04:00Z,nb-bkp-01,CFG-21,CHG-418,signed,applied,X25519MLKEM768
+JOB-713,2026-10-10T03:10:00Z,nb-api-02,CFG-31,CHG-421,signed,staged_only,X25519

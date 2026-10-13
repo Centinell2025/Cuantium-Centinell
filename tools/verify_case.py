@@ -151,7 +151,7 @@ def validate() -> dict[str, int]:
     numbers = [int(m.group(1)) for m in re.finditer(r"(?m)^(\d{2})\.", investigation)]
     if numbers != list(range(1, 23)):
         raise ValueError("Expected 22 sequential investigation prompts")
-    required_limits = ("synthetic", "NOT a verified", "not evidence")
+    required_limits = ("synthetic", "none is implemented", "not evidence")
     limits = (ROOT / "docs" / "EVIDENCE_LIMITS.md").read_text(encoding="utf-8")
     if not all(term.lower() in limits.lower() for term in required_limits):
         raise ValueError("Evidence limits are incomplete")
